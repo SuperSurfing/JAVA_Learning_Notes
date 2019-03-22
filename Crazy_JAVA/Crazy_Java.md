@@ -30,6 +30,7 @@
   - [内部类](#内部类)
   - [lambda表达式](#lambda表达式)
   - [对象与垃圾回收](#对象与垃圾回收)
+  - [jar](#jar)
 - [CH7-CH10](#ch7-ch10)
 
 
@@ -164,6 +165,7 @@ JAVA 类与 C++ 类的不同之处如下：
 - 增加 final 和 abstract 成员函数修饰符
 - 没有 virtual 修饰符
 
+参考 6.11 节“修饰符的适应范围”
 
 **JAVA 对象必须以 new 关键词创建，如下：**   
 
@@ -454,12 +456,6 @@ public class CommandTest
 
 > 这种实例有限而且固定的类，在 Java 里被称为枚举类。比如：星期、四季等。
 
-枚举类与普通类不同：  
-1. 枚举类使用 enum 修饰，而不是 class
-2. 枚举类派生自 java.lang.Enum 而不是 java.lang.Object
-3. 枚举类不能派生子类
-
-
 ```
 public enum SeasonEnum
 {
@@ -468,7 +464,49 @@ public enum SeasonEnum
 }
 ```
 
+枚举类与普通类不同：  
+1. 枚举类使用 enum 修饰，而不是 class
+2. 枚举类派生自 java.lang.Enum 而不是 java.lang.Object
+3. 枚举类不能派生子类
+4. 所有枚举类都有一个values方法，返回该枚举类的所有实例
+5. 平常使用枚举实例时，总是通过EnumClass.variable形式来访问
+
+参考 EnumTest 示例程序
+
+
+```
+	public static void main(String[] args)
+	{
+		//所有枚举类都有一个values方法，返回该枚举类的所有实例
+		for (SeasonEnum s : SeasonEnum.values())
+		{
+			System.out.println(s);
+		}
+		//平常使用枚举实例时，
+		//总是通过EnumClass.variable形式来访问
+		new EnumTest().judge(SeasonEnum.SPRING);
+	}
+```
+
+
+
 #### 对象与垃圾回收
+
+
+![](https://github.com/SuperSurfing/JAVA_Learning_Notes/blob/master/Crazy_JAVA/Images/status.png?raw=true)
+
+这一节主要讲解“对象与垃圾回收”的机制，也不太深，了解即可。
+
+
+#### JAR
+
+JAR - Java Archive File，它是一种压缩文件，与常见的 zip 文件兼容，通常被称为 JAR 包。
+
+JAR 包一般通过 jar 命令压缩而成，将它添加到 CLASSPATH 后，JVM 能够在内存中自动解压成目录树。  
+
+6.12 节还介绍了 jar 命令的基本用法，它也是基本 Linux 命令之一。需要注意的是，《疯狂JAVA讲义》是在 Windows 环境下演示的，标准 Linux 命令应该在 options 前添加“-”。   
+
+
 
 
 
