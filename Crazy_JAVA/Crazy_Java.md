@@ -19,6 +19,17 @@
   - [Methods](#methods)
   - [Òþ²ØºÍ·â×°](#Òþ²ØºÍ·â×°)
   - [package](#package)
+  - [¼Ì³ÐÓë×éºÏ](#¼Ì³ÐÓë×éºÏ)
+  - [¶àÌ¬](#¶àÌ¬)
+  - [³õÊ¼»¯¿é](#³õÊ¼»¯¿é)
+  - [°ü×°Àà](#°ü×°Àà)
+  - [¶ÔÏó´¦Àí](#¶ÔÏó´¦Àí)
+  - [Àà³ÉÔ±](#Àà³ÉÔ±)
+  - [finalÐÞÊÎ·û](#finalÐÞÊÎ·û)
+  - [³éÏóÀàÓë½Ó¿Ú](#³éÏóÀàÓë½Ó¿Ú)
+  - [ÄÚ²¿Àà](#ÄÚ²¿Àà)
+  - [lambda±í´ïÊ½](#lambda±í´ïÊ½)
+  - [¶ÔÏóÓëÀ¬»ø»ØÊÕ](#¶ÔÏóÓëÀ¬»ø»ØÊÕ)
 - [CH7-CH10](#ch7-ch10)
 
 
@@ -37,6 +48,8 @@
 ²Î¿¼ [JavaÑ§Ï°Â·¾¶¼°Á·ÊÖÏîÄ¿ºÏ¼¯](https://zhuanlan.zhihu.com/p/30782286)
 
 [Crazy JAVA Source Code](https://github.com/DoingLee/crazy-java-src)
+
+[Öªºõ£º´óÊý¾ÝºËÐÄ¼¼Êõ](https://www.zhihu.com/question/27696290)
 
 
 
@@ -61,6 +74,9 @@ CH1 ½éÉÜÁË JAVA ÓïÑÔµÄ»ù±¾¸ÅÄîºÍÔËÐÐ»·¾³£¬ÐèÒªÕÆÎÕµÄÖªÊ¶µã°üÀ¨£º
 
 Í¨¹ý procexp.exe ¿ÉÒÔ¹Û²ìµ½£¬Ã»ÔËÐÐÒ»¸ö JAVA ³ÌÐò£¬»á´´½¨Ò»¸ö java.exe ½ø³Ì¡£Õâ¸ö jave.exe Ó¦¸Ã¾ÍÊÇ JVM ¡£  
 ´ËÍâ£¬Í¨¹ý everything Ò²¿ÉËÑË÷µ½¡°java.exe¡±¡¢¡°javac.exe¡±ºÍ¡°javadoc.exe¡± µÈ½ø³ÌµÄ image ÎÄ¼þ¡£
+
+**²Â²â Java GC µÄ»ØÊÕËã·¨**£º  
+GC »á¶Ô±È¡°Õ»ÄÚ´æ¡±ÖÐÒýÓÃ±äÁ¿Ö¸ÏòµÄµØÖ·ºÍ¡°¶ÑÄÚ´æ¡±ÖÐµÄ¶ÔÏóµÄµØÖ·£¬Èç¹û·¢ÏÖ¡°ÎÞÖ÷¶ÔÏó¡±£¬Ôò×Ô¶¯»ØÊÕ¸Ã¶ÔÏóµÄÄÚ´æ¡£
 
 
 #### UML
@@ -170,7 +186,11 @@ Person p2 = p;
 
 JAVA ÀàµÄ constructor Óë C++ ÀàËÆ£¬Ò²ÓÐ default constructor ¡£  
 
-JAVA Ã»ÓÐÖ¸Õë£¬Òò´Ë£¬JAVA ÖÐµÄ this ÊÇ¡°this ÒýÓÃ¡±¡£
+JAVA Ã»ÓÐÖ¸Õë£¬Òò´Ë£¬JAVA ÖÐµÄ this ÊÇ¡°this ÒýÓÃ¡±¡£  
+
+5.6 ½Ú¡°ÉîÈë¹¹ÔìÆ÷¡±Ö÷Òª½éÉÜÁËÁ½¸öÖØµã£ºÒ»ÊÇ¡°¹¹ÔìÆ÷ÖØÔØ¡±£»¶þÊÇ¡°¹¹ÔìÆ÷µ÷ÓÃ¹¹ÔìÆ÷¡±£¨²Î¿¼ 5.5 Apple.java ´úÂë£¬ËüÊµ¼ÊÉÏÊÇÊ¹ÓÃ this µ÷ÓÃ¹¹ÔìÆ÷£©¡£
+
+ÐèÒª×¢ÒâµÄÊÇ£º**JAVA ÀàÖ»ÓÐ constructor Ã»ÓÐ destructor**£¨Îö¹¹Æ÷£©£¬ËùÓÐµÄ¶ÔÏó¶¼ÓÉ GC ×Ô¶¯»ØÊÕ¡£
 
 
 #### Methods
@@ -190,6 +210,8 @@ JAVA µÄ·â×°Ôö¼ÓÁË default £¨°ü·ÃÎÊÈ¨ÏÞ£©·ÃÎÊÈ¨ÏÞ¼¶±ð£¬ÆäËûµÄÓë C++ ÏàÍ¬¡£
 
 ²Î¿¼Ê¾Àý³ÌÐò 5.4 ¿ÉÒÔºÜºÃµÄÀí½â JAVA µÄ·ÃÎÊ¿ØÖÆ»úÖÆ¡£  
 
+![](https://github.com/SuperSurfing/JAVA_Learning_Notes/blob/master/Crazy_JAVA/Images/AccessRigth.png?raw=true)
+
 #### package
 
 JAVA ÒýÈëÁË package µÄ¸ÅÄî£¬¼ÈÓÐC++¡°Ãû³Æ¿Õ¼ä¡±µÄ×÷ÓÃ£¬ÓÖÓÐ¹¦ÄÜ¼¯³É£¨Àà¿â£©µÄ¹¦Ð§¡£  
@@ -204,7 +226,249 @@ JAVA ÒýÈëÁË package µÄ¸ÅÄî£¬¼ÈÓÐC++¡°Ãû³Æ¿Õ¼ä¡±µÄ×÷ÓÃ£¬ÓÖÓÐ¹¦ÄÜ¼¯³É£¨Àà¿â£©µÄ¹¦Ð
 - ¸¸°üÖÐµÄÀà·ÃÎÊ×Ó°üÖÐµÄÀà£¬ÐèÒªÓÃ×Ó°üÂ·¾¶È«Ãû
 - Ê¹ÓÃ import ¿ÉÒÔÊ¡ÂÔÐ´°üÃû£¬¶øÊ¹ÓÃ import static Ôò¿ÉÒÔÁ¬ÀàÃû¶¼¿ÉÒÔÊ¡ÂÔ
 
+JAVA Ô´ÎÄ¼þ½á¹¹ÈçÏÂ£º
 
+![](https://github.com/SuperSurfing/JAVA_Learning_Notes/blob/master/Crazy_JAVA/Images/struct.png?raw=true)
+
+
+#### ¼Ì³ÐÓë×éºÏ
+
+Óë C++ ²»Í¬µÄÊÇ£¬JAVA ÑÏ¸ñÏÞÖÆÎª¡°µ¥¼Ì³Ð¡±¡£  
+
+> Java Ê¹ÓÃ extends ×÷Îª¼Ì³ÐµÄ¹Ø¼ü×Ö£¬ËüºÜºÃµØÌåÏÖ×ÓÀàºÍ¸¸ÀàµÄ¹ØÏµ£º×ÓÀàÊÇ¸¸ÀàµÄÀ©Õ¹¡£
+
+
+##### Override vs. Super
+
+1. ×ÓÀà¿ÉÒÔÖØÐ´£¨Override£©¸¸ÀàµÄ·½·¨£¬Ò²¿ÉÒÔÊ¹ÓÃ Super »ò¸¸ÀàÃûÀ´µ÷ÓÃ±»¸²¸ÇµÄ¸¸Àà·½·¨
+2. Super »¹¿ÉÒÔÓÃÀ´·ÃÎÊ¸¸Àà±»Òþ²ØµÄ³ÉÔ±
+3. ×ÓÀà¹¹ÔìÆ÷¿ÉÒÔÊ¹ÓÃ Super À´µ÷ÓÃ¸¸Àà¹¹ÔìÆ÷
+
+
+##### is-a vs. has-a
+
+5.8 ½Ú½éÉÜÁËÒ»Ð©±È½ÏÖØÒªµÄ OOP Éè¼ÆË¼Ïë£¬is-A or has-A ÊÇÒ»¸öÎÊÌâ£¬ÖµµÃÈÏÕæ´§Ä¦£¬Ò²¿ÉÒÔÏ¸Ï¸Ìå»áÊ¾Àý³ÌÐò 5.8 ¡£  
+
+Java µÄÊµÀý³ÉÔ±¶¼ÊÇÒýÓÃÀàÐÍ£¬ËùÒÔÔÚÉè¼Æ×éºÏµÄÊ±ºò£¬Ò»°ã»á½«±»×éºÏ¶ÔÏóÍ¨¹ýÐÎ²Î´«¸øÔØÌå¶ÔÏóµÄ¹¹ÔìÆ÷¡£
+
+¸¸ÀàÔÚÉè¼ÆµÄÊ±ºò£¬ÐèÒªÌØ±ð×¢ÒâÄÇÐ©»á±»×ÓÀà Override µÄ·½·¨¡£
+
+#### ¶àÌ¬
+
+> Java ÒýÓÃ±äÁ¿ÓÐÁ½¸öÀàÐÍ£ºÒ»¸öÊÇ±àÒëÊ±ÀàÐÍ£¬Ò»¸öÊÇÔËÐÐÊ±ÀàÐÍ¡£±àÒëÊ±ÀàÐÍÓÉÉùÃ÷¸Ã±äÁ¿Ê±Ê¹ÓÃµÄÀàÐÍ¾ö¶¨£¬ÔËÐÐÊ±ÀàÐÍÓÉÊµ¼Ê¸³¸ø¸Ã±äÁ¿µÄ¶ÔÏó¾ö¶¨¡£Èç¹û±àÒëÊ±ÀàÐÍºÍÔËÐÐÊ±ÀàÐÍ²»Ò»ÖÂ£¬¾Í¿ÉÄÜ³öÏÖËùÎ½µÄ¶àÌ¬£¨Polymorphism£©¡£
+
+JAVA µÄ¶àÌ¬Óë C++ ´óÖÂÏàÍ¬£¬Í¨¹ýÌåÑéÊ¾Àý³ÌÐò 5.7 ¼´¿ÉÕÆÎÕ¡£
+
+##### ÀàÐÍ×ª»»
+
+Í¬ C/C++ Ò»Ñù£¬Java µÄÀàÐÍ×ª»»·ûÒ²ÊÇÐ¡À¨ºÅ¡£²»Í¬µÄÊÇ£º  
+- ÊýÖµÀàÐÍÓë²¼¶ûÀàÐÍ²»ÄÜ»¥×ª
+- ÒýÓÃÀàÐÍÖ»ÄÜÔÚ¼Ì³ÐÁ´ÉÏ×ª»»
+- instanceof ÔËËã·ûÔ¤ÏÈÅÐ¶Ï×ª»»¿ÉÐÐÐÔ
+
+
+#### ³õÊ¼»¯¿é
+
+³õÊ¼»¯¿éÊÇ Java ÀàµÄµÚ 4 ¸ö³ÉÔ±£¬Ç°Ãæ 3 ¸öÒÀ´ÎÊÇ£º³ÉÔ±±äÁ¿£¨field£©¡¢·½·¨£¨method£©ºÍ¹¹ÔìÆ÷£¨constructor£©¡£
+
+> ³õÊ¼»¯¿éÖ»ÔÚ´´½¨ Java ¶ÔÏóÊ±ÒþÊ½Ö´ÐÐ£¬¶øÇÒÔÚÖ´ÐÐ¹¹ÔìÆ÷Ö®Ç°Ö´ÐÐ
+
+³õÊ¼¿éµÄ×÷ÓÃÊÇ½«²»Í¬¹¹ÔìÆ÷µÄÏàÍ¬´úÂë¶ÎÌáÈ¡³öÀ´£¬¼õÉÙÖØ¸´´úÂë¡£ÔÚ javac ±àÒëµÄÊ±ºò£¬Ëü»á±»×Ô¶¯Ìî³äµ½¸÷¸ö¹¹ÔìÆ÷ÖÐ¡£  
+
+
+
+#### °ü×°Àà
+
+°ü×°Àà£¨Wrapper£©µÄÓÐÁ½¸öºÃ´¦£º 
+1. ÔöÇ¿ OOP£¬½« 8 ¸ö»ù±¾ÀàÐÍÓë class Í³Ò»
+2. °ü×°ÀàÌá¹©ÁËºÜ¶à convenient methods£¬±ÈÈç×Ö·û´®×ª»»¹¦ÄÜ£ºParseXXX / valueof
+
+Ê¾Àý³ÌÐò 6.1 ¡°Primitive2String¡± ÑÝÊ¾ÁË×Ö·û´®Óë¸÷ÖÖ»ù±¾Êý¾ÝÀàÐÍµÄ»¥×ª¡£  
+
+´ËÍâ£¬¿ÉÒÔ²Î¿¼ JAVA API Doc È¥ÁË½â¸÷¸ö°ü×°ÀàµÄ features ¡£
+
+
+#### ¶ÔÏó´¦Àí
+
+6.2 ½ÚÖ÷Òª½éÉÜÁË Object µÄ ToString ·½·¨¼°Æä Override ºÍ ¶ÔÏó±È½ÏµÄ·½·¨¡£  
+
+- ToString
+- ºãµÈºÅ±È½Ï ==
+- ÖµÏàµÈ±È½Ï equals ·½·¨ override
+
+
+
+#### Àà³ÉÔ±
+
+Java µÄ Àà³ÉÔ±£¨°üÀ¨Àà±äÁ¿ºÍÀà·½·¨µÈ£©Óë C++ µÄ¾²Ì¬³ÉÔ±ÏàËÆ£¬²»Í¬µÄÊÇ£º**Java Àà³ÉÔ±¿ÉÒÔÍ¨¹ý¶ÔÏóÀ´·ÃÎÊ**£¬JVM ÔÚµ×²ã»á×Ô¶¯×ª»»ÎªÀàÀ´·ÃÎÊ¡£
+
+¹Ø¼ü£º**java Àà³ÉÔ±²»ÄÜ·ÃÎÊÊµÀý³ÉÔ±**£¡ËüÃÇµÄ×÷ÓÃÓòºÍ³õÊ¼»¯Ê±¼ä²»Í¬£¬ÕâÖÖ·ÃÎÊÈÝÒ×ÒýÆðÏµÍ³»ìÂÒ¡£
+
+##### Singleton
+
+6.3 ½ÚÁíÒ»¸öÖØÒªµÄ¸ÅÄîÊÇ¡°ÈçºÎ´´½¨ java µÄ Singleton ¶ÔÏó¡±£¬²Î¿¼Ê¾Àý³ÌÐò 6.3\SingletonTest ¡£
+
+
+```
+class Singleton
+{
+	//Ê¹ÓÃÒ»¸ö±äÁ¿À´»º´æÔø¾­´´½¨µÄÊµÀý
+	private static Singleton instance;
+	
+	//½«¹¹ÔìÆ÷Ê¹ÓÃprivateÐÞÊÎ£¬Òþ²Ø¸Ã¹¹ÔìÆ÷
+	private Singleton(){}
+
+	public static Singleton getInstance()
+	{
+		if (instance == null)
+		{
+			instance = new Singleton();
+		}
+		return instance;
+	}
+}
+```
+
+
+#### finalÐÞÊÎ·û
+
+Java µÄ final ÐÞÊÎ·ûÀàËÆÓÚ C# µÄ sealed£¬¼æ¾ß²¿·Ö C++ ÖÐ const µÄ¹¦ÄÜ¡£Ëü¿ÉÒÔÐÞÊÎ class, local variable, field and methods ¡£  
+
+ÓÉÓÚÏµÍ³»á×Ô¶¯³õÊ¼»¯ field £¬¶ø²»»á×Ô¶¯³õÊ¼»¯ local variable£¬Òò´Ë£¬final ÐÞÊÎËüÃÇµÄÐ§¹û²»Í¬¡£  
+
+field ÐÞÊÎ¾Ö²¿±äÁ¿ºÍÐÎ²ÎÊ±£¬Ð§¹ûºÍ C++ ÖÐµÄ const ²î²»¶à¡£
+
+##### ºê±äÁ¿
+
+final ¿ÉÒÔÓÃÓÚ¶¨Òå¡°ºê±äÁ¿¡±£¬ÐèÒªÀí½âÒ»Ð©±àÒëÔ­Àí¡£
+
+##### final ·½·¨ºÍ final Àà
+
+final ·½·¨²»¿ÉÒÔ±»ÖØÐ´£¨override£©£¬final Àà²»¿ÉÒÔÓÐ×ÓÀà
+
+
+##### »º´æÊµÀýµÄ²»¿É±äÀà
+
+ÕâÒ»Ð¡½ÚÑÝÊ¾ÁËÒ»ÖÖÉè¼ÆÄ£Ê½¡ª¡ª¡°»º´æ¡±£¬²Î¿¼Ê¾Àý³ÌÐò 6.4 - CacheImmutaleTest
+
+
+
+#### ³éÏóÀàÓë½Ó¿Ú
+
+> ³éÏóÀàÌåÏÖµÄÊÇÒ»ÖÖ**Ä£°æÄ£Ê½**µÄÉè¼Æ
+
+6.5 ½Ú¡°³éÏóÀà¡±Í¨¹ý Shape - calPerimeter µÄÀý×Ó£¬·Ç³£¾«±ÙµØ½²½âÁË¡°³éÏóÀà¡±ÔÚ OOP ÖÐµÄ×÷ÓÃ£¬ÖµµÃÏ¸Ï¸Ìå»á£¬ÌØ±ðÊÇ¸Ã½Ú×îºó¹ØÓÚ¡°Ä£°æÄ£Ê½¡±µÄÉè¼Æ¹æÔò¡£  
+
+> ÀûÓÃ³éÏóÀàºÍ³éÏó·½·¨µÄÓÅÊÆ£¬¿ÉÒÔ¸üºÃµØ·¢»Ó¶àÌ¬µÄÓÅÊÆ£¬Ê¹µÃ³ÌÐò¸ü¼ÓÁé»î
+
+
+¡°³éÏóÀà¡±Óë C++ ´øÐéº¯ÊýµÄÀàÏàËÆ£¬µ«Ò²ÓÐºÜ´óÇø±ð£º  
+- ¹Ø¼ü×Ö²»Í¬£ºabstract vs. virtual
+- Java µÄ³éÏóÀà¸ü´¿´â£ºËü²»ÄÜÊµÀý»¯£¬³éÏó·½·¨Ò²²»ÄÜÓÐÊµÏÖµÈ
+- ¼Ì³Ð×Ô³éÏóÀàµÄÊµÀýÀà±ØÐëÊµÏÖËùÓÐ¡°Ã»ÓÐÊµÏÖµÄ³éÏó·½·¨¡±£¬·ñÔòÈÔ±»¹éÎª³éÏóÀà
+- final Óë abstract Ïà³å
+
+
+##### Ä£°æÄ£Ê½
+
+- ³éÏó¸¸Àà¿ÉÒÔÖ»¶¨Òå²¿·Ö·½·¨£¬°Ñ²»ÄÜÊµÏÖµÄ·½·¨Áô¸ø×ÓÀàÈ¥ÊµÏÖ
+- ³éÏó¸¸ÀàµÄ·½·¨¿ÉÒÔÖ»ÊÇÒ»¸ö**Í¨ÓÃËã·¨**£¬ÆäÊµÏÖÒÀÀµ×ÓÀàµÄ¸¨Öú£¨Ðèµ÷ÓÃÆäËû¡°³éÏó·½·¨¡±£©¡£
+
+
+##### ½Ó¿Ú
+
+´ÓÊµÏÖÉÏÀ´Ëµ£¬½Ó¿ÚÊÇÒ»ÖÖÌØÊâµÄ³éÏóÀà£¬ËüÃ»ÓÐÈÎºÎÊµÏÖµÄ·½·¨¡£Í¨¹ý javac ±àÒëºóµÄ interface ÈÔÈ»ÊÇ *.class ÎÄ¼þ¡£µ«ÊÇ£¬´Ó OOP À´Ëµ£¬½Ó¿ÚÊÇÒ»ÖÖÖØÒªµÄÉè¼ÆË¼Ïë£¬ËüÓë³éÏóÀàµÄÉè¼ÆË¼ÏëÍêÈ«²»Í¬¡£  
+
+> ³éÏóÀàÊÇÒ»ÖÖ¡°Ä£°æÄ£Ê½¡±µÄÉè¼Æ£¬¶ø½Ó¿ÚÔòÌåÏÖµÄÊÇÒ»ÖÖ¡°¹æ·¶¡±¡ª¡ª½Ó¿ÚÓëÊµÏÖ·ÖÀë¡£
+
+´ÓÉè¼ÆË¼ÏëÉÏÀ´Ëµ£¬½Ó¿Ú²»ÊÇÒ»ÖÖÀà£¬Òò´Ë£¬½Ó¿Ú²»Ê¹ÓÃ class ¹Ø¼ü×Ö£¬¶øÊÇÓÃµ¥¶ÀµÄ interface ¹Ø¼ü×Ö¡£  
+
+ÐèÒª×¢ÒâµÄÊÇ£¬½Ó¿ÚµÄ¶¨ÒåÖÐ»áÊ¡ÂÔºÜ¶à¹Ø¼ü×Ö¡£¿ÉÒÔ²Î¿¼Ê¾Àý³ÌÐò 6.6 £¬ÈÏÕæÌå»á½Ó¿ÚµÄ¶¨Òå¡£  
+
+ÖØµã£º**½Ó¿ÚÖ§³Ö¶à¼Ì³Ð**£¬²Î¿¼Ê¾Àý³ÌÐò 6.6 - Printer
+
+
+##### ÃæÏò½Ó¿Ú±à³Ì
+
+ÕâÒ»½ÚÍ¨¹ýÊ¾Àý³ÌÐò 6.6 - Computer.java ºÍ 6.6 - Command.java ·Ö±ðÑÝÊ¾ÁËÃæÏò½Ó¿Ú±à³ÌµÄ**¹¤³§Ä£Ê½**ºÍ**ÃüÁîÄ£Ê½**¡£ËüÃÇ¶¼½µµÍÁËÄ£¿éÖ®¼äµÄ**ñîºÏÐÔ**¡£  
+¡°¼òµ¥¹¤³ÌÄ£Ê½¡±ÖÐµÄ Computer Ö»Óë Output ½Ó¿ÚñîºÏ£¬¶ø²»ÓëÈÎºÎ¾ßÌåµÄÀàñîºÏ¡£´ËÍâ£¬OutputFactory Àà¸ºÔð´´½¨¾ßÌåµÄ Printer£¬²¢ÔÚ´Ë½« Printer ×°ÔØµ½ Computer ÖÐ¡£  
+¹¤³ÌÄ£Ê½µÄ¾«Ëè¾ÍÊÇÓÐÒ»¸ö×¨ÃÅµÄ¡°¹¤³§Àà¡±¸ºÔð**½«¸÷¸ö×é¼þÀà×é×°ÆðÀ´**¡£  
+
+> ÏëÏóÒ»ÏÂ£¬ÔÚ×é×°³µ¼ä£¨Factory£©¹¤ÈË½«Ò»¿î Printer °²×°µ½Ô¤ÁôÁË output ½Ó¿ÚµÄ Computer ÉÏ£¬Õâ¾ÍÊÇ¹¤³§Ä£Ê½¡£Èç¹û²úÆ·Éý¼¶ÁË£¬±ÈÈç³öÁËÒ»¿îÐÂµÄ BetterPrinter £¬Computer Éú²úÏßÍêÈ«²»ÐèÒªµ÷Õû£¬Ö»ÐèÐÞ¸Ä×é×°³µ¼äµÄ×é×°Çåµ¥£¬½« BetterPrinter ×é×°µ½ Computer ÉÏ¼´¿É¡£  
+½Ó¿ÚÊÇË«ÏòµÄ£¬Ò»·½Ãæ Printer ºÍ BetterPrinter ÔÚÉú²úµÄÊ±ºòÒª×ñÑ­ output ½Ó¿Ú£¬ÁíÒ»·½Ãæ Computer Ò²ÒªÔ¤Áô output ½Ó¿Ú¡£
+
+¡°ÃüÁîÄ£Ê½¡±Ã²ËÆ vistor £¨·ÃÎÊÕß£©Ä£Ê½£¬ËüµÄºËÐÄÊÇ½«¡°´¦ÀíÐÐÎª¡±µ±×÷Ò»¸ö²ÎÊý´«¸øÒ»¸ö¡°Í¨ÓÃ·½·¨¡±¡£ÕâÖÖÄ£Ê½ÔÚº¯ÊýÊ½±à³ÌÖÐºÜ³£¼û£¬Ëü¾ÍÊÇ½«º¯Êýµ±ÐÎ²Î¡£  
+**ProcessArray ¾ÍÏñÊÇÒ»¸öºìÄï**£¬½« array ºÍ cmd Ç£µ½ÁËÒ»Æð¡£
+
+> ÏëÏóÒ»ÏÂÔÚ³ø·¿Åëâ¿µÄÇé¿ö£¬target ÊÇ´ýÅëâ¿µÄÊ³²Ä£¬command ÊÇÅëâ¿µÄ·½·¨¡£±ÈÈçÓÐÒ»ÌõÓã£¬Ëü¼È¿ÉÒÔºìÉÕ£¬Ò²¿ÉÒÔÇåÕô£¬»¹¿ÉÒÔ×ö¿¾Óã£»Í¬ÑùµØ£¬Ò»Ö»¼¦Ò²¿ÉÒÔÓÐ³´¡¢ìÀ¡¢¿¾ÈýÖÖÅëâ¿·½Ê½¡£Òò´Ë£¬ÎÒÃÇÓ¦¸Ã½«Ê³²ÄºÍÅëâ¿·½·¨±£³Ö»¥Ïà¶ÀÁ¢£¬Ö»ÓÐÔÚÕæÕýÅëâ¿µÄÊ±ºò£¬²Å¸ù¾Ý¹Ë¿Íµãµ¥µÄÇé¿ö¾ßÌåÊµÊ©Ä³ÖÖÅëâ¿·½Ê½¡£    
+ÓÉ´ËÒ²¿ÉÒÔ¿´³ö£¬½Ó¿ÚÊÇÒ»ÖÖÄ£ºýµÄÔ¼¶¨£¬ËüÌá¹©ÁË¸ü´óµÄÁé»î¿Õ¼ä¡£  
+
+
+
+×Ü½áÒ»ÏÂ£ºÎÞÂÛÊÇ¡°¼òµ¥¹¤³ÌÄ£Ê½¡±£¬»¹ÊÇ¡°ÃüÁîÄ£Ê½¡±£¬ËüÃÇµÄºËÐÄÄ¿µÄ¶¼ÊÇ½µµÍÄ£¿é¼äµÄñîºÏ¡£ËüÃÇµÄ¹²Í¬ÊµÏÖ·½·¨ÊÇ½«¸÷¸ö¹¦ÄÜÄ£¿é¾¡Á¿²ð·ÖÎª¶ÀÁ¢µÄ¡°Áã¼þ¡±£¬È»ºóÔÚÍ¨¹ýÒ»¸ö¡°ñîºÏÆ÷¡±½«ÕâÐ©Áã¼þñîºÏÔÚÒ»Æð£¬Ò»µ±ÓÐ±ä¶¯£¬½öÐèÒªÐÞ¸ÄñîºÏÆ÷¼´¿É¡£¶øÕâ¸ö¡°ñîºÏÆ÷¡±ÔÚ¡°¹¤³§Ä£Ê½¡±ÖÐ¾ÍÊÇ OutputFactory Àà£¬ÔÚ¡°ÃüÁîÄ£Ê½¡±ÖÐ¾ÍÊÇ ProcessArray Àà¡£
+
+
+#### ÄÚ²¿Àà
+
+ÄÚ²¿ÀàÓÖ³ÆÇ¶Ì×Àà£¬ÔÚ C++ ÖÐÒ²ÓÐÏàËÆµÄ¸ÅÄî¡£  
+
+6.7 ½Ú½éÉÜÁË¡°ÄÚ²¿Àà¡±µÄÈýÖÖÓÃÍ¾ºÍÏà¹ØÓÃ·¨¡£ÓÉÓÚÊµ¼ÊÏîÄ¿ÖÐ²¢²»³£¼û£¬ÎÒÃÇ¿ÉÒÔÏÈÁË½âÆäÓÃÍ¾¼´¿É¡£
+
+
+
+#### lambda±í´ïÊ½
+
+Í¬ C++£¬Lambda ±í´ïÊ½ÓÖ³ÆÎª¡°¼ýÍ·±í´ïÊ½¡± £¨->£©£¬ËüÊµ¼ÊÉÏÊÇÒ»ÖÖ¡°ÄäÃûº¯Êý¡±¡£
+
+> Lambda ±í´ïÊ½Ö§³Ö½«´úÂë¿é×÷Îª·½·¨²ÎÊý£¬ Lambda ±í´ïÊ½ÔÊÐíÊ¹ÓÃ¸ü¼ò½àµÄ´úÂëÀ´´´½¨Ö»ÓÐÒ»¸ö³éÏó·½·¨µÄ½Ó¿Ú£¨º¯ÊýÊ½½Ó¿Ú£©µÄÊ¾Àý¡£  
+
+Ê¾Àý³ÌÐò 6.8 ÊÇÔÚÊ¾Àý³ÌÐò 6.6 - CommandTest µÄ»ù´¡ÉÏ£¬ÏÈÓÃÄÚ²¿Àà½øÐÐ¸Ä½ø£¬ÔÙÓÃ Lambda ±í´ïÊ½½øÐÐ¸ü¼ò½àµÄ¸Ä½ø¡£  
+
+
+```
+public class CommandTest
+{
+	public static void main(String[] args) 
+	{
+		ProcessArray pa = new ProcessArray();
+		int[] array = {3, -4, 6, 4};
+		
+		pa.process(array , (int[] target)->{
+		        int sum = 0;
+		        for (int tmp : target )
+		        {
+		        	sum += tmp;
+		        }
+		        System.out.println("Êý×éÔªËØµÄ×ÜºÍÊÇ:" + sum);
+		});
+	}
+}
+```
+
+ÕâÒ»½ÚµÄÁíÒ»¸öÊ¾Àý´úÂëÑÝÊ¾ÁË¼¸ÖÖ Lambda±í´ïÊ½µÄ¼òÐ´·½·¨¡£
+
+×¢Òâ£ºLambda±í´ïÊ½Ö»Ö§³ÖÓë¡°º¯ÊýÊ½½Ó¿Ú¡±ÁªÓÃ¡£
+
+
+#### Ã¶¾ÙÀà
+
+> ÕâÖÖÊµÀýÓÐÏÞ¶øÇÒ¹Ì¶¨µÄÀà£¬ÔÚ Java Àï±»³ÆÎªÃ¶¾ÙÀà¡£±ÈÈç£ºÐÇÆÚ¡¢ËÄ¼¾µÈ¡£
+
+Ã¶¾ÙÀàÓëÆÕÍ¨Àà²»Í¬£º  
+1. Ã¶¾ÙÀàÊ¹ÓÃ enum ÐÞÊÎ£¬¶ø²»ÊÇ class
+2. Ã¶¾ÙÀàÅÉÉú×Ô java.lang.Enum ¶ø²»ÊÇ java.lang.Object
+3. Ã¶¾ÙÀà²»ÄÜÅÉÉú×ÓÀà
+
+
+```
+public enum SeasonEnum
+{
+	// ÔÚµÚÒ»ÐÐÁÐ³ö4¸öÃ¶¾ÙÊµÀý
+	SPRING,SUMMER,FALL,WINTER;
+}
+```
+
+#### ¶ÔÏóÓëÀ¬»ø»ØÊÕ
 
 
 
