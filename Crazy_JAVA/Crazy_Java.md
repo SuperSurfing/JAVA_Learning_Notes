@@ -29,9 +29,13 @@
   - [抽象类与接口](#抽象类与接口)
   - [内部类](#内部类)
   - [lambda表达式](#lambda表达式)
+  - [枚举类](#枚举类)
   - [对象与垃圾回收](#对象与垃圾回收)
   - [jar](#jar)
 - [CH7-CH10](#ch7-ch10)
+  - [System_and_Runtime](#system_and_runtime)
+  - [常用类](#常用类)
+  - [国际化与格式化](#国际化与格式化)
 
 
 ### Learning_Plan
@@ -53,6 +57,17 @@
 [知乎：大数据核心技术](https://www.zhihu.com/question/27696290)
 
 
+结合以上的参考资料，特别是“JAVA后端学习之路”，第一阶段我安装如下步骤来学习《疯狂JAVA讲义》：  
+
+- 快速浏览 CH1-CH4，熟悉 JAVA 程序及其开发的基本概念
+  - 理解“一切皆类”的 JAVA - OOP 思想
+  - 通过“JAVA数组”，理解“引用类型”从**栈内存**指向**堆内存**的本质
+- 认真学习 CH5-CH6，掌握 JAVA 面向对象的编程模式和实现方法
+- GUI 部分的 CH11 - AWT 跨平台性差，直接跳过；CH12 - Swing 暂时跳过
+- 
+
+
+
 
 ### CH1-CH4
 
@@ -72,6 +87,8 @@ CH1 介绍了 JAVA 语言的基本概念和运行环境，需要掌握的知识点包括：
 - JAVA 的编译和运行（javac, java）
 - **JAVA 程序的基本规则**（class, source file, pack）
 - jshell
+
+[Java和JDK版本的关系](https://blog.51cto.com/cnn237111/1641194)
 
 通过 procexp.exe 可以观察到，没运行一个 JAVA 程序，会创建一个 java.exe 进程。这个 jave.exe 应该就是 JVM 。  
 此外，通过 everything 也可搜索到“java.exe”、“javac.exe”和“javadoc.exe” 等进程的 image 文件。
@@ -457,18 +474,25 @@ public class CommandTest
 > 这种实例有限而且固定的类，在 Java 里被称为枚举类。比如：星期、四季等。
 
 ```
-public enum SeasonEnum
-{
-	// 在第一行列出4个枚举实例
-	SPRING,SUMMER,FALL,WINTER;
+public enum Chessman {
+	BLACK("●"), WHITE("○");
+	private final String chessman;
+
+	private Chessman(String chessman) {
+		this.chessman = chessman;
+	}
+
+	public String getChessman() {
+		return this.chessman;
+	}
 }
 ```
 
 枚举类与普通类不同：  
 1. 枚举类使用 enum 修饰，而不是 class
 2. 枚举类派生自 java.lang.Enum 而不是 java.lang.Object
-3. 枚举类不能派生子类
-4. 所有枚举类都有一个values方法，返回该枚举类的所有实例
+3. 所有枚举类都有一个values方法，返回该枚举类的所有实例
+4. 枚举类的实例只能是枚举值，而不是随意地通过 new 来创建枚举对象
 5. 平常使用枚举实例时，总是通过EnumClass.variable形式来访问
 
 参考 EnumTest 示例程序
@@ -505,6 +529,178 @@ JAR - Java Archive File，它是一种压缩文件，与常见的 zip 文件兼容，通常被称为 JAR
 JAR 包一般通过 jar 命令压缩而成，将它添加到 CLASSPATH 后，JVM 能够在内存中自动解压成目录树。  
 
 6.12 节还介绍了 jar 命令的基本用法，它也是基本 Linux 命令之一。需要注意的是，《疯狂JAVA讲义》是在 Windows 环境下演示的，标准 Linux 命令应该在 options 前添加“-”。   
+
+
+
+
+### CH7-CH10
+
+#### System_and_Runtime
+
+##### Scanner
+
+7.1 节“与用户互动”主要介绍了“命令行参数”和 [Scanner](https://docs.oracle.com/javase/8/docs/api/) 类的用法。Scanner 非常强大，可以读键盘输入，也可以读文件。  
+
+
+##### Java 调 C 程序接口
+
+7.2.1 节在介绍 System 类的时候，介绍了Java 通过定义 native methods 去调用 C 动态链接库的接口的方法。  
+
+##### System 类
+
+> System 类代表当前 JAVA 程序的运行平台，程序不能创建 System 类的实例，只能调用它的类方法和类成员。
+
+
+##### Runtime 类
+
+> Runtime 类代表 Java 程序的运行时环境，每个 Java 程序都有一个与之对应的 Runtime 实例。
+
+通过 procexp.exe 可以观察到，没打开一个 Java 程序，就会新创建一个 java.exe 进程。
+
+> Runtime 可以单独启动一个进程来运行操作系统的命令——exec() 
+
+
+#### 常用类
+
+7.3 节介绍了常用的类，包括：Object, String, StringBuffer, StringBuilder, Math, Random, BigDecimal。这一节的学习，建议多看示例代码，从源码中找感觉。  
+
+
+Object 是 root 类，String 是不可变类（immutable class)，StringBuffer 是可变的类，它最终要转为 String，StringBuilder 是线程安全的。  
+
+Math 提供基本的数学运算，Random 可以生成各种类型的随机数（包括布尔型）。
+
+BigDeciaml 提供给高精度的浮点运算（转为字符串），该书还封装了一个 Arith 类专用浮点运算。  
+
+
+7.4 节介绍 JAVA 的时间和日期类，其中 Date 类比较老，建议放弃，而 Calendar 相当复杂，也不常用。最好选择新增的 java.time 包中的类。
+
+7.5 节主要介绍“正则表达式”，主要是 Pattern 和 Matcher 两个类，搭配 String 来使用。
+
+
+```
+// 将一个字符串（正则表达式）编译成 Pattern 对象
+Pattern p = Pattern.compile("a*b");
+
+// 使用 Pattern 对象构造 Matcher 对象
+Matcher m = p.matcher("aaaaab");
+
+// 调用 Matcher 对象的 matches 方法
+boolean b = m.matches();
+```
+
+如果 Pattern 仅使用一次，可以直接调静态方法：
+
+```
+boolean b = Pattern.matches("a*b", "aaaaab");
+```
+
+重要的是理解 Matcher 对象的 find 方法和 group 方法的用法：
+
+```
+public class FindGroup 
+{ 
+	public static void main(String[] args)
+	{
+		//创建一个Pattern对象，并用它建立一个Matcher对象
+		Matcher m = Pattern.compile("\\w+") 
+			.matcher("Java is very easy!"); 
+		while(m.find())
+		{
+			System.out.println(m.group()); 
+		}
+		int i = 0;
+		while(m.find(i))
+		{ 
+			System.out.print(m.group() + "\t"); 
+			i++; 
+		}
+	}
+}
+```
+
+后一个循环会按更细的粒度进行匹配和分类。
+
+
+
+#### 国际化与格式化
+
+I18N - Internationalization
+
+L10N - Localization （本地化）
+
+> 一个国际化支持很好的应用，在不同的区域使用时，会呈现本地语言的提示。
+
+L10N 会调用 OS 的 Location/Region 设置。
+
+##### 国际化的方法
+
+JAVA 程序的国际化依赖于“资源文件”，而“资源文件”又是以 key-value 形式的。  
+
+> Java 程序国际化的关键类是 ResourceBundle 和 Locale ，ResourceBundle 根据不同的 Locale 加载语言资源文件，再根据指定的 key 取得已加载语言资源文件中的字符串。
+
+```
+public class Hello
+{
+	public static void main(String[] args)
+	{
+		//取得系统默认的国家/语言环境
+		Locale myLocale = Locale.getDefault();
+		
+		//根据指定国家/语言环境加载资源文件
+		ResourceBundle bundle = ResourceBundle
+			.getBundle("mess" , myLocale);
+			
+		//打印从资源文件中取得的消息
+		System.out.println(bundle.getString("hello"));
+	}
+}
+```
+
+
+##### 带占位符的字符串
+
+MessageFormat 处理带占位符的字符串
+
+```
+		//根据Locale加载语言资源
+		ResourceBundle bundle = ResourceBundle
+			.getBundle("myMess" , currentLocale);
+		//取得已加载的语言资源文件中msg对应消息
+		String msg = bundle.getString("msg");
+		//使用MessageFormat为带占位符的字符串传入参数
+		System.out.println(MessageFormat.format(msg
+			, "yeeku" , new Date()));
+```
+
+除了 MessageFormat ，还有 NumberFormat 和 DateFormat ，它们分别实现数值和日期与字符串之间的互转
+
+
+
+##### 使用类文件代替资源文件
+
+```
+public class myMess_zh_CN extends ListResourceBundle
+{
+	//定义资源
+	private final Object myData[][]=
+	{
+		{"msg","{0}，你好！今天的日期是{1}"}
+	};
+	//重写方法getContents()
+	public Object[][] getContents()
+	{
+		//该方法返回资源的key-value对
+		return myData;
+	}
+}
+```
+
+系统会先搜索 class 文件再搜索 properies 文件。
+
+
+
+
+
 
 
 
